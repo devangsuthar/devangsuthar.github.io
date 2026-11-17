@@ -1,0 +1,27 @@
+---
+const { platform, username, icon: Icon, image } = Astro.props;
+const profilePath = platform === "linkedin" ? "in/" : "";
+---
+
+<a
+    href={`https://www.${platform}.com/${profilePath}${username}`}
+    class="inline-block"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    {
+        Icon ? (
+            <Icon size={20} />
+        ) : image ? (
+            <img
+                src={image.src}
+                alt={platform}
+                class="dark:brightness-0 dark:invert-100"
+                width="22"
+                height="22"
+            />
+        ) : (
+            <span>{platform}</span>
+        )
+    }
+</a>

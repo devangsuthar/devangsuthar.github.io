@@ -1,0 +1,32 @@
+---
+import SocialLinks from "../layout/Social.astro";
+import { FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
+import Github from "../../assets/images/github.svg";
+---
+
+<footer>
+    <div class="container px-4 lg:px-2 py-8 mx-auto max-w-screen-xl">
+        <div class="social-links items-center flex gap-4 mb-4">
+            <SocialLinks
+                platform="github"
+                username="devang_suthar"
+                image={Github}
+            />
+            <SocialLinks
+                platform="twitter"
+                username="devstech"
+                icon={FaXTwitter}
+            />
+            <SocialLinks
+                platform="linkedin"
+                username="devang-suthar"
+                icon={FaLinkedin}
+            />
+            <SocialLinks
+                platform="instagram"
+                username="_imdevang_"
+                icon={FaInstagram}
+            />
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,25 @@
+---
+import navData from "../../../../data/menu.json";
+---
+
+<div
+    class="hidden xs:fixed xs:top-[72px] relative left-auto xs:!-left-full order-last justify-between items-center w-full lg:order-1 lg:flex lg:w-auto gap-10"
+    id="mobile-menu-2"
+>
+    <ul
+        class="flex flex-col mt-4 font-normal lg:flex-row lg:space-x-10 lg:mt-0 nav-links"
+    >
+        {
+            navData.navItems.map((item: { name: string; url: string }) => (
+                <li>
+                    <a
+                        href={item.url}
+                        class="block py-2 text-gray-900 dark:text-white hover:text-blue-700 font-medium uppercase text-sm lg:hover:text-primary-700 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                        {item.name}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</div>

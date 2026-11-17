@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    color-scheme: light;
+    --textColor: #111827;
+    --fontWeight: 700;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #111827;
+    transition: background-color 180ms ease, color 180ms ease;
+}
+
+html.dark body {
+    background-color: #111827;
+    color: #f9fafb;
+}
