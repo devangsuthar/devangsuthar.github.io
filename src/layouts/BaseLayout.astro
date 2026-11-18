@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { pageTitle, pageDescription,
-	ogImage = "/images/og-image.png", noIndex = false
+	ogImage = "/images/devstech.png", noIndex = false
  } = Astro.props;
 
 
@@ -39,7 +39,7 @@ const robotsContent = noIndex
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={pageDescription} />
 		<meta name="robots" content={robotsContent} />
-
+		<meta name="google-site-verification" content="3DqjxD5w-OmgAjX-tPA37FKFs3oXXSW-kaWZLCQeGvc" />
 		{canonicalURL && (
 			<meta property="og:url" content={canonicalURL} />
 		)}
