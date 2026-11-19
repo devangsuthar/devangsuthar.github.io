@@ -1,0 +1,49 @@
+
+# Workflow Name
+name: Custom Deploy Workflow
+
+#1. Workflow Triggers
+on:
+  push:
+    branches: [development]
+  workflow_dispatch:
+
+
+#2. Permissions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+#3. Jobs
+jobs:
+  #Build Job
+  build:
+    name: Build Astro Website
+    runs-on: ubuntu-latest
+
+    #steps to follow in the build job
+    steps:
+
+      #Step 1: Download Source Code
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      #Step 2: Install Node Js
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          cache: npm
+
+      #Step 3: Install Dependencies 
+      - name: Install Dependencies
+        run: npm ci
+
+      #Step 4: Build the Astro Website
+      - name: Build Astro Website
+        run: npm run build
+
+    
+
+
