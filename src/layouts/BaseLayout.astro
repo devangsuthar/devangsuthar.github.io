@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { pageTitle, pageDescription,
-	ogImage = "/images/devstech.png", noIndex = false
+	ogImage = "/images/og-image.png", noIndex = false
  } = Astro.props;
 
 
@@ -35,6 +35,8 @@ const robotsContent = noIndex
 	<head>
 		<meta charset="utf-8" />
 		<title>{pageTitle + " - Full Stack Developer"}</title>
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={pageDescription} />
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={pageDescription} />
@@ -46,21 +48,13 @@ const robotsContent = noIndex
 		{socialImage && (
 			<meta property="og:image" content={socialImage} />
 		)}
-
 		<link
-			rel="icon"
-			href="../../images/favicon.svg"
-			media="(prefers-color-scheme: light)"
-		/>
-		<link
-			rel="icon"
-			href="../../images/favicon-light.svg"
-			media="(prefers-color-scheme: dark)"
-		/>
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+			rel="icon" href="../../images/favicon.svg" media="(prefers-color-scheme: light)"/>
+		<link rel="icon" href="../../images/favicon-light.svg" media="(prefers-color-scheme: dark)"/>
+		
 		<script is:inline>
 			const savedTheme = localStorage.getItem("theme");
+			console.log("Saved theme:", savedTheme);
 			const prefersDark = window.matchMedia(
 				"(prefers-color-scheme: dark)",
 			).matches;
