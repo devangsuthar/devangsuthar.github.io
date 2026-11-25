@@ -1,4 +1,5 @@
 ---
+
 title: "My Journey: From Curious Coder to Front-End Developer"
 description: "Hi, I'm Devang Suthar. Here's how I became a front-end developer, and how sports and volunteering keep me balanced."
 pubDate: 2026-09-30

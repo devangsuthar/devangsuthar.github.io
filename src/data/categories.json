@@ -1,0 +1,16 @@
+{
+    "blog": [
+        "personal",
+        "social",
+        "technology",
+        "latest trends",
+        "sports"
+    ],
+    "projects": [
+        "web development",
+        "mobile apps",
+        "open source",
+        "design",
+        "UI/UX"
+    ]
+}

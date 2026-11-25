@@ -1,10 +1,31 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import menuitem from "..//../data/menu.json";
+import menuitem from "../data/menu.json";
+import { FaXTwitter, FaLinkedin, FaEnvelope } from "react-icons/fa6";
+
+const resAPI = await fetch(
+	"https://darkgray-rail-812544.hostingersite.com/wp-json/wp/v2/our-team?_embed",
+);
+
+if (resAPI.ok === false) {
+	throw new Error(
+		`Failed to fetch data: ${resAPI.status} ${resAPI.statusText}`,
+	);
+}
+
+const posts = await resAPI.json();
+
+const pageTitle = "Devang Suthar";
+const pageDescription =
+	"I'm Devang Suthar, a Full Stack Developer passionate about building modern, responsive, and user-friendly web applications.";
+const noIndex = false;
 ---
 
-<BaseLayout pageTitle="Devang Suthar" 
-pageDescription="I'm Devang Suthar, a Full Stack Developer passionate about building modern, responsive, and user-friendly web applications.">
+<BaseLayout
+	pageTitle={pageTitle}
+	pageDescription={pageDescription}
+	noIndex={noIndex}
+>
 	<div class="content">
 		<h1 class="text-xl font-bold">Welcome To Home page.</h1>
 
@@ -12,18 +33,100 @@ pageDescription="I'm Devang Suthar, a Full Stack Developer passionate about buil
 		<p>This is where I will post about my journey learning Astro.</p>
 
 		<ul class="menu mt-7 space-y-1">
-			{
-				menuitem.navItems.map((item) => (
-					<li value={item.name.toLowerCase()}>
-						<a
-							class="text-blue-700 dark:text-white dark:hover:text-blue-400 font-medium hover:text-blue-900 transition-all"
-							href={item.url}
-						>
-							{item.name}
-						</a>
+			{menuitem.navItems.map((item) => (
+				<li value={item.name.toLowerCase()}>
+					<a
+						class="text-blue-700 dark:text-white dark:hover:text-blue-400 font-medium hover:text-blue-900 transition-all"
+						href={item.url}
+					>
+						{item.name}
+					</a>
+				</li>
+			))}
+		</ul>
+
+		<h2 class="mt-10 text-3xl mb-4 font-bold uppercase">
+			{posts?.[0]?.type?.split("-").join(" ")} {""}
+			<span>({posts?.length})</span>
+		</h2>
+		<ul class="grid grid-cols-3 gap-5">
+			{posts?.map((post) => {
+				const featuredImage =
+					post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+				return (
+					<li key={post.id} class="single-team">
+						<div class="team-card h-full bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md">
+							{featuredImage && (
+								<img
+									class="w-full rounded-tl-xl rounded-tr-xl"
+									src={featuredImage}
+									alt={
+										post._embedded?.[
+											"wp:featuredmedia"
+										]?.[0]?.alt_text || ""
+									}
+								/>
+							)}
+							<div class="content h-fit p-4">
+								<h1 class="text-xl font-bold mb-2">
+									{post.title.rendered}
+								</h1>
+								<h5 class="text-lg font-semibold mb-3">
+									{post.acf?.team_member_designation},{" "}
+									<span class="text-sm font-normal">
+										{post.acf?.team_member_location}
+									</span>
+								</h5>
+								{post.content.rendered && (
+									<div
+										set:html={
+											post.content.rendered.slice(
+												0,
+												200,
+											) + "..."
+										}
+									/>
+								)}
+
+								<div class="social-links mt-4">
+									<div class="flex space-x-4">
+										{post.acf?.twitter_profile && (
+											<a
+												href={post.acf?.twitter_profile}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
+											>
+												<FaXTwitter />
+											</a>
+										)}
+										{post.acf?.linkedin_profile && (
+											<a
+												href={
+													post.acf?.linkedin_profile
+												}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
+											>
+												<FaLinkedin />
+											</a>
+										)}
+										{post.acf?.team_member_email && (
+											<a
+												href={`mailto:${post.acf?.team_member_email}`}
+												class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
+											>
+												<FaEnvelope />
+											</a>
+										)}
+									</div>
+								</div>
+							</div>
+						</div>
 					</li>
-				))
-			}
+				);
+			})}
 		</ul>
 	</div>
 </BaseLayout>

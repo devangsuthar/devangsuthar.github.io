@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle="My Portfolio | Devang Suthar";
+const pageDescription="Explore web development projects by Devang Suthar, featuring modern websites, creative solutions, and full stack web applications.";
 ---
 
-<BaseLayout pageTitle="My Portfolio | Devang Suthar"
- pageDescription="Explore web development projects by Devang Suthar, featuring modern websites, creative solutions, and full stack web applications.">
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
 	<h1 class="text-xl font-bold">Welcome To Portfolio page.</h1>
 </BaseLayout>

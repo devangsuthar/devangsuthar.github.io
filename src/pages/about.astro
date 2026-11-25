@@ -2,6 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Mail, Phone, MapPin } from "@lucide/astro";
 
+const pageTitle="About Me | Devang Suthar";
+const pageDescription="Get to know Devang Suthar, a Full Stack Developer. Explore my professional journey, technical skills, experience, and passion for web development.";
+const noIndex = true;
+
 const myPersonalInfo = {
 	firstName: "Devang",
 	lastName: "Suthar",
@@ -30,8 +34,7 @@ const myPersonalInfo = {
 const { textColor = "brown", fontWeight = "700" } = Astro.props;
 ---
 
-<BaseLayout pageTitle="About Me | Devang Suthar" pageDescription="Get to know Devang Suthar, a Full Stack Developer.
- Explore my professional journey, technical skills, experience, and passion for web development.">
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription} noIndex={noIndex}>
 	<div class="info">
 		<h2>Personal Information:</h2>
 		<h3>My Name is {myPersonalInfo.firstName} {myPersonalInfo.lastName}</h3>
